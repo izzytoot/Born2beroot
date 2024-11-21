@@ -1,0 +1,7 @@
+#OVERVIEW
+
+1. Check if the file signature.txt is inside the project's repository
+  - Clone repository;
+  - Inside the repository run ls
+
+2. Check if the machine numbers match:
