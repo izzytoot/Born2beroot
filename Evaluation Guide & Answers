@@ -1,0 +1,69 @@
+## OVERVIEW
+
+1. Check if the file signature.txt is inside the project's repository
+  - Clone repository;
+  - Inside the repository run < ls >
+
+2. Check if the machine numbers match:
+  - Run < cat -e singature.txt >
+  - Run < cd /sgoinfre/username/project-folder-name >
+  - Run < shasum foldername.vdi >
+  - Compare outputs
+
+3. What is a Virtual Machine and how does it work?
+  - It's a software that simulates a computer inside another computer;
+  - It uses resources of the real machine (host);
+  - It allows running different operating systems within one computer;
+  - It's good for testing, developing and running isolated environments;
+  - Examples of usage: running Linux on a Windows computer; using a different IP for certain operations; testing a created program in different environments; etc.
+
+4. Rocky vs Debian
+  - Debian:
+      - Recommended for who's learning;
+      - Stable and simple;
+      - It uses packages apt with .deb files.
+  - Rocky:
+      - Used more by companies and professional developers;
+      - Less user friendly;
+      - It uses a packages dng with .rpm files.
+
+5. Why Debian?
+  - User friendly, stable and safe.
+  - Ideal for who is learning.
+
+6. Apt vs aptitude:
+  - Apt:
+      - More basic, without visual interface;
+      - Direct and simple when adding, removing or updating packages.
+  - Aptitude:
+      - More advanced and with a visual interface;
+      - Allows confict resolution with automatic dependencies.
+
+7. Whant is APPArmour?
+  - A system to control access to the Virtual Machine;
+  - It establishes rules on what each program is allowed to do within the VM;
+  - It avoids malicious behaviours by programs;
+  - Creates a safe environment for the VM.
+
+## SIMPLE CONFIGURATION
+
+1. Verify that there isn't a graphic interface;
+
+2. Starting the machine:
+  - Open in Virtual Box;
+  - Crypt Password (in my case 42Borntoberoot);
+  - User login (in my case icunha-t);
+  - User Password (in my case it's the 42 password);
+  - Verify that we're not on root: run < whoami >;
+
+3. Check Operating System: run < uname -V> ir < hostnamectl >
+
+4. Verify that UFW is launched: run < sudo ufw status >
+
+5. Check SSH status: run < sudo service  shh status >
+
+## USER
+
+1. Check users (evaluated username must be there): run < users >
+
+2. Check user in groups "sudo" and "user42"
