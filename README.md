@@ -1,5 +1,9 @@
 # Born2beroot Tutorial - Virtual Machine Setup
 
+## 0. Introduction
+
+This is a basic tutorial for setting up the Virtual Machine requested by the 42 project Born2beroot (nov 2024). For further information on concepts and reasons for these instructions check Gemartin99's tutorial: https://github.com/gemartin99/Born2beroot-Tutorial .
+
 ## 1. Choose and download Operating System to be used (Debian or Rocky)
 
 1.1. For Debian: https://www.debian.org/download.en.html
@@ -20,7 +24,7 @@
 
 ## 3. Install Debian
 
-3.1. Install;
+3.1. `Install`;
 
 3.2. Language -> `English`;
 
@@ -215,5 +219,20 @@ run `sudo chage -M 30 root`;
 
 4.7.1. Create script file in username directory -> run `vim monitoring.sh`;
 
+4.7.2. This script (https://github.com/izzytoot/Born2beroot/blob/main/monitoring.sh) commands the display of a set of information about our VM (check the subject).
 
+4.7.3. Check Gemartin99's section about the script. It contains detailed information about each macro: https://github.com/gemartin99/Born2beroot-Tutorial/blob/main/README_EN.md#5--script-
 
+### 4.8. CRON
+
+4.8.1. Open crontab -> run `sudo crontab -u root -e`
+
+4.8.2. Add `*/10 * * * * sh /home/icunha-t/monitoring`
+
+### 4.9. SIGNATURE FILE TO SUBMIT
+
+4.9.1. In your computer, go to the directory where the VM is stored (sgoinfre) and open terminal to find out the number of the VM -> run `shasum Born2beroot.vdi`
+
+4.9.2. Copy the number and paste it on a .txt file;
+
+4.9.3. Submit this file to the Intra project repository.
