@@ -1,4 +1,4 @@
-## OVERVIEW
+################## OVERVIEW ##################
 
 1. Check if the file signature.txt is inside the project's repository
   - Clone repository;
@@ -34,7 +34,7 @@
 6. Apt vs aptitude:
   - Apt:
       - More basic, without visual interface;
-      - Direct and simple when adding, removing or updating packages.
+      - Direct and simple when adding, removing or updating packages.PHILIP WESTON TOOT
   - Aptitude:
       - More advanced and with a visual interface;
       - Allows confict resolution with automatic dependencies.
@@ -45,7 +45,7 @@
   - It avoids malicious behaviours by programs;
   - Creates a safe environment for the VM.
 
-## SIMPLE CONFIGURATION
+################## SIMPLE CONFIGURATION ##################
 
 1. Verify that there isn't a graphic interface;
 
@@ -58,12 +58,145 @@
 
 3. Check Operating System: run < uname -V> ir < hostnamectl >
 
-4. Verify that UFW is launched: run < sudo ufw status >
+4. Verify that UFW is launched: run <IMPLE CONFIGURATION sudo ufw status >
 
 5. Check SSH status: run < sudo service  shh status >
 
-## USER
+################## USER & GROUPS ##################
 
 1. Check users (evaluated username must be there): run < users >
 
-2. Check user in groups "sudo" and "user42"
+2. Check user in groups "sudo" and "user42":
+  - Run < getent group sudo >
+  - Run < getent group user42 >
+
+3. Create a new user and password: run < sudo adduser newuser >
+
+4. Create password:
+  - At least 10 characters; 1 uppercase; 1 lowercase; 1 digit;
+  - It can't have the 3 same chars in a row;
+  - It can't contain the username.
+
+5. Check and discuss password policy:
+  - Open login.defs: run < vim /etc/login.defs >
+  - Open common-password: run < vim /etc/pam.d/common-password >
+  - Advantages of the strong paswsword policy: safety, hard to guess;
+  - Disadvantages of the strong paswsword policy: frustrating for user, hard to remember.
+
+6. Create a new group called "evaluating": run < sudo addgroup evaluating >
+
+7. Add user to the group and check: 
+  - run < sudo adduser newuser evaluating >
+  - run < getent group evaluating >
+
+################## HOSTNAME & PARTITIONS ##################
+
+1. Verify hostname is the 42 username followed by 42 (in my case icunha-t42): run < hostname >
+
+2. Change hostname to newuser and reboot system:
+  - run < sudo nano /etc/hostname > and swap hostname to newuser;
+  - run < sudo nano /etc/hosts > and swap hostname to newuser;
+  - run < sudo reboot >
+
+3. Restore original hostname:
+  - run < sudo nano /etc/hostname > and swap hostname to original;
+  - run < sudo nano /etc/hosts > and swap hostname to original;
+  - run < sudo reboot >
+
+4. Display partitions of the VM and compare output with subject: run < lslblk >
+
+5. What's LVM and how does it work?
+  - Stands for Logic Volume Manager;
+  - Software to manage memory partitions within disks;
+  - Brings flexibility to storage management.
+
+################## SUDO ##################
+
+1. Check if sudo is installed: run < sudo -V >
+
+2. Add new user to sudo group and check: 
+  - Run < sudo adduser newuser sudo >
+  - Run <getent group sudo >
+  - We do this because we want newuser to be able to execute commands as admin.
+
+3. Verify sudo rules:
+  - Open file with rules: run < sudo vim /etc/sudoers.d/sudo_config >
+  - Explain rules:
+    - Defaults passwd_tries=3 → Limits sudo PW tries to 3;
+  	- Defaults badpass_message="Error" → Shows error message when PW is wrong;
+    - Defaults logfile="/var/log/sudo/sudo_config" → Registers sudo commands in this directory;
+    - Defaults log_input, log_output → Registers input (command) and output (result);
+    - Defaults iolog_dir="/var/log/sudo" → Defines the file where logs are registered;
+    - Defaults requiretty → Requires the usage of TTY (a terminal);
+    - Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin" → Restricts directries where sudo acts.
+
+4. Verify if sudo file exists:
+  - Change to root: run < su > and digit sudo password (in my case Borntoberoot42);
+  - Run < cd /var/log/sudo >
+
+5. Open sudo log history and check last command: run < cat /var/log/sudo/sudo_config >
+
+6. Verify it's registering logs:
+  - Run any sudo command (ex. < sudo -V >);
+  - Run < cat /var/log/sudo/sudo_config >
+  - Check last sudo log was updated.
+
+################## UFW / FIREWALL ##################
+
+1. Verify if UFW is installed: run < sudo ufw status >
+
+2. What's UFW?
+  - It's a tool to manage the firewall's rules;
+  - It controls the in and out traffic of the VM, making it a safe environment.
+
+3. Display a list of active rules (it should show the port 4242): run < sudo ufw status numbered >
+
+4. Add a new rule and check it (port 8080):
+  - run < sudo ufw allow 8080 >
+  - run < sudo ufw status numbered >
+
+5. Delete the new rule (port 8080) and check:
+  - run < sudo ufw delete 2> and then < y >
+  - run < sudo ufw delete 3> and then < y >
+  - run < sudo ufw status numbered > (only 4242 should appear);
+
+################## SSH ##################
+
+1. Verify ssh service: run < sudo service ssh status >
+
+2. What is SSH?
+  - It stands for Secure Shel;
+  - It's a network protocl used to access and manage a VM remotely in a safe and encrypted way.
+
+3. Check that the VM is only using the 4242 port: run < sudo vim /etc/ssh/ssh_config >
+
+4. Connect from real machine (host) with root and newuser login (root shouldn't work):
+  - In the VM find IP number by running < hostname -I >
+  - In the real machine terminal run < ssh root@ip.number -p 4242 > and write root password. It shouldn't work.
+  - In the real machine terminal run < ssh newuser@ip.number -p 4242 > and rite newuser's password. It should work.
+
+################## SCRIPT ##################
+
+1. Open script:
+  - Go to root (run < su > and write password);
+  - run < vim monitoring.sh >
+  - Explain what each command stands for:
+  - Check the script's output: run < sh monitoring.sh >    
+
+2. Explain what is cron and why are we using it:
+  - It's a task manager that allows the execution of commands / scripts in certain time spans;
+  - We use it to run our script every 10 minutes.
+
+3. Open and edit cron (script should open every minute, instead of every 10):
+  - Run < sudo crontab -u root -e >
+  - Substitute 10 for 1 and save;
+  - Wait for 1 minute and ensure it's running every minute.
+
+4. Make sure the script doesn't run at all:
+  - Run < sudo crontab -u root -e > and delete last line. Save and exit.
+  - Run < sudo reboot > and make sure the script isn't running.
+  OR
+  - Run < sudo /etc/init.d/cronstop >
+  - Run < sudo reboot > and make sure the script isn't running.
+  
+  
