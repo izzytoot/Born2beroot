@@ -205,7 +205,7 @@ run `sudo chage -M 30 root`;
 
 ### 4.6. CONNECT TO VIRTUAL MACHINE FROM REAL MACHINE
 
-4.6.1. In Virtual Box: `settings` -> `Network` -> `Advanced` -> `Port forwarding` -> press `+` (add new rule) -> Host Port `4242` Guest Port `4242`;
+4.6.1. In Virtual Box: `settings` -> `Network` -> `Advanced` -> Change `NAT` to `Bridged Adapter` and save;
 
 4.6.2. Find Virtual Machine IP -> run `hostname -I` 
 
