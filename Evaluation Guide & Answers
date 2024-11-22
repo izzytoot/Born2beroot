@@ -180,7 +180,7 @@
 1. Open script:
   - Go to root (run < su > and write password);
   - run < vim monitoring.sh >
-  - Explain what each command stands for:
+  - Explain what each command stands for;
   - Check the script's output: run < sh monitoring.sh >    
 
 2. Explain what is cron and why are we using it:
