@@ -39,7 +39,7 @@ last_reboot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 # displays last system boot time, finds lines that start with "system" and prints 3rd and 4th word
 
 #LVM ACTIVE
-lvm_use=$(if [$(lsblk | grep "lvm" | wc -l) -gt 0]; then echo yes; else echo no; fi)
+lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
 
 # lists info about all block devices in system (memory and partitions), filters lvm type and counts lin>
 # if greater than 0, prints yes: if >= 0, prints no
