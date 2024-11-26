@@ -202,11 +202,13 @@ Substitute `PASS_WARN_AGE 0` for `PASS_WARN_AGE 7` (warning before changing PW);
 
 4.6.1. In Virtual Box: `settings` -> `Network` -> `Advanced` -> Change `NAT` to `Bridged Adapter` and save;
 
-4.6.2. Find Virtual Machine IP -> run `hostname -I` 
+4.6.2. Reboot your Virtual Machine
+
+4.6.3. Find Virtual Machine IP -> run `hostname -I` 
 
 *Keep VM running*
 
-4.6.3. In your Real Machine terminal -> run `ssh username@ip.number -p 4242` followed by `yes` and the user password;
+4.6.4. In your Real Machine terminal -> run `ssh username@ip.number -p 4242` followed by `yes` and the user password;
 
 *To leave VM use ctrl+D*
 
