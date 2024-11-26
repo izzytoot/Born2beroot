@@ -114,13 +114,13 @@ run `sudo adduser username sudo`;
 
 4.2.1. Update the system -> run `sudo apt update`
 
-4.2.2. Install OpenSSH package -> run `sudo apt install Openssh-server` followed by `y`;
+4.2.2. Install OpenSSH package -> run `sudo apt install openssh-server` followed by `y`;
 
 4.2.3. Install vim -> run `sudo apt install vim` followed by `y`;
 
-4.2.4. Edit ssh_config file:
+4.2.4. Edit sshd_config file:
 \
-open file -> run `vim /etc/ssh/ssh_config`;
+open file -> run `vim /etc/ssh/sshd_config`;
 \
 substitute `Port 22` for `Port 4242`;
 \
