@@ -21,7 +21,7 @@ ram_usage=$(free --mega | awk '$1 == "Mem:" {printf("%d / %dMB (%.2f%%)\n", $3, 
 # looks for  info about RAM memory in mb and prints used mem / total mem (percentage available%)
 
 #AVAILABLE DISK STORAGE & UTILIZATION RATE
-disk_usage=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("%d / >
+disk_usage=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("%d / %dGb (%d%%)\n", use, total/1024, use/total * 100)}'
 
 # looks for info about disk and prints sum of used mem / total memGB (percentage used)
 
@@ -41,7 +41,7 @@ last_reboot=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 #LVM ACTIVE
 lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
 
-# lists info about all block devices in system (memory and partitions), filters lvm type and counts lin>
+# lists info about all block devices in system (memory and partitions), filters lvm type and counts lines>
 # if greater than 0, prints yes: if >= 0, prints no
 
 #TCP CONNECTIONS
