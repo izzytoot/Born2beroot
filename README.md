@@ -196,11 +196,7 @@ Substitute `PASS_WARN_AGE 0` for `PASS_WARN_AGE 7` (warning before changing PW);
 \
 `enforce_for_root` (inforce policy in root);
 
-4.5.6. Change time setting of days for root as well:
-\ 
-run `sudo chage -m 2 root`;
-\
-run `sudo chage -M 30 root`;
+4.5.6. Change time setting of days for root as well: run `sudo chage -m 2 root`; run `sudo chage -M 30 root`;
 
 ### 4.6. CONNECT TO VIRTUAL MACHINE FROM REAL MACHINE
 
