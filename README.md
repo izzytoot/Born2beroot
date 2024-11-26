@@ -176,7 +176,7 @@ Substitute `PASS_WARN_AGE 0` for `PASS_WARN_AGE 7` (warning before changing PW);
 
 4.5.3. Install quality PW package: run `sudo apt install libpam-pwquality` followed by `y`;
 
-4.5.4. Open password file -> run `vim /pam.d/common-password`;
+4.5.4. Open password file -> run `vim /etc/pam.d/common-password`;
 
 4.5.5. Set password days policy P2:
 \
@@ -199,8 +199,7 @@ Substitute `PASS_WARN_AGE 0` for `PASS_WARN_AGE 7` (warning before changing PW);
 4.5.6. Change time setting of days for root as well:
 \ 
 run `sudo chage -m 2 root`;
-run `sudo chage -M 30 root`;
-run `sudo chage -m 2 root`;
+\
 run `sudo chage -M 30 root`;
 
 ### 4.6. CONNECT TO VIRTUAL MACHINE FROM REAL MACHINE
