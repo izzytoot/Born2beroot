@@ -174,7 +174,7 @@ Substitute `PASS_MIN_DAYS 0` for `PASS_MIN_DAYS 2` (minimum PW chage interval);
 \
 Substitute `PASS_WARN_AGE 0` for `PASS_WARN_AGE 7` (warning before changing PW);
 
-4.5.3. Install quality PW package: run `sudo apt install libpam-pquality` followed by `y`;
+4.5.3. Install quality PW package: run `sudo apt install libpam-pwquality` followed by `y`;
 
 4.5.4. Open password file -> run `vim /pam.d/common-password`;
 
