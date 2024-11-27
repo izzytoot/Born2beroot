@@ -21,9 +21,14 @@ ram_usage=$(free --mega | awk '$1 == "Mem:" {printf("%d / %dMB (%.2f%%)\n", $3, 
 # looks for  info about RAM memory in mb and prints used mem / total mem (percentage available%)
 
 #AVAILABLE DISK STORAGE & UTILIZATION RATE
-disk_usage=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("%d / %dGb (%d%%)\n", use, total/1024, use/total * 100)}'
+disk_total=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_t += $2} END {printf ("%.1fGb\n"), disk_t/1024}')
+disk_use=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} END {print disk_u}')
+disk_percent=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{disk_u += $3} {disk_t+= $2} END {printf("%d"), disk_u/disk_t*100}')
 
-# looks for info about disk and prints sum of used mem / total memGB (percentage used)
+# df -m: Displays disk usage information in megabytes.
+# grep "/dev/": Filters lines that contain disk devices.
+# grep -v "/boot": Excludes the /boot partition.
+# Total and usage calculation: Accumulates usage and total values to calculate the percentage.
 
 #CPU LOAD (USAGE)
 cpu_l=$(vmstat 1 2 | tail -1 | awk '{print $15}')
@@ -73,7 +78,7 @@ wall "  Architecture : $arch
         CPU physical : $cpuf
         vCPU : $cpuv
         Memory Usage : $ram_usage
-        Disk Usage : $disk_usage
+        Disk Usage : $disk_use/${disk_total} ($disk_percent%)
         CPU load : $cpu_fin%
         Last boot : $last_reboot
         LVM use : $lvm_use
